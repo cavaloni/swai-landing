@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Swai – AI-Powered Ethical Shopping Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    @keyframes blurIn {
+      0% { 
+        opacity: 0; 
+        filter: blur(16px) grayscale(60%);
+        transform: translateY(40px) scale(1.05);
+      }
+      100% { 
+        opacity: 1; 
+        filter: blur(0) grayscale(0%);
+        transform: translateY(0) scale(1);
+      }
+    }
+    .feature-card {
+      opacity: 0;
+    }
+    .blur-in {
+      animation: blurIn 1s cubic-bezier(.17,.67,.83,.67) forwards;
+    }
+  </style>
+  <script>
+    // Initialize particles.js
+    document.addEventListener('DOMContentLoaded', function() {
+      particlesJS('particles-js', {
+        particles: {
+          number: { 
+            value: 100, 
+            density: { 
+              enable: true, 
+              value_area: 800 
+            } 
+          },
+          color: { 
+            value: ['#ffffff', '#e5f9ff', '#bae6fd', '#a5f3fc'] 
+          },
+          shape: { 
+            type: 'star',
+            stroke: { width: 0, color: '#000000' },
+            polygon: { nb_sides: 5 }
+          },
+          opacity: {
+            value: 1,
+            random: true,
+            anim: { 
+              enable: true, 
+              speed: 1, 
+              opacity_min: 0.5, 
+              sync: false 
+            }
+          },
+          size: {
+            value: 4,
+            random: true,
+            anim: { 
+              enable: true, 
+              speed: 4, 
+              size_min: 2, 
+              sync: false 
+            }
+          },
+          line_linked: {
+            enable: false,
+            distance: 200,
+            color: '#ffffff',
+            opacity: 0.1,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 0.5,
+            direction: 'none',
+            random: true,
+            straight: false,
+            out_mode: 'out',
+            bounce: false,
+            attract: { 
+              enable: true, 
+              rotateX: 800, 
+              rotateY: 1600 
+            }
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: {
+            onhover: { 
+              enable: true, 
+              mode: 'repulse' 
+            },
+            onclick: { 
+              enable: true, 
+              mode: 'bubble' 
+            },
+            resize: true
+          },
+          modes: {
+            repulse: { 
+              distance: 100, 
+              duration: 0.4 
+            },
+            bubble: { 
+              distance: 200, 
+              size: 6, 
+              duration: 0.3 
+            }
+          }
+        },
+        retina_detect: true
+      });
+
+      // Simple IntersectionObserver for blur-in animation
+      document.addEventListener("DOMContentLoaded", function() {
+      const cards = document.querySelectorAll('.feature-card');
+      // Remove blur-in class initially
+      cards.forEach(card => {
+        card.classList.remove('blur-in');
+      });
+      
+      const observer = new window.IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('blur-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      // Start observing after a small delay to ensure initial styles are applied
+      setTimeout(() => {
+        cards.forEach(card => observer.observe(card));
+      }, 100);
+      });
+    });
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Inter&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-green-50 via-blue-50 to-gray-50 min-h-screen flex flex-col">
+
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Hero Section with Background Image -->
+  <section class="relative overflow-hidden min-h-screen flex items-center justify-center" style="position: relative; z-index: 2;">
+    <div class="absolute top-8 left-8 z-20">
+      <div class="flex items-center space-x-2">
+        <svg class="w-8 h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L4 12l8 10 8-10z"/>
+          <path d="M12 2v20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 12l8-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Swai</span>
+      </div>
+    </div>
+    <div class="absolute inset-0 z-0">
+      <img src="assets/Whisk_storyboardab42e06f5a6f41a49aabba5d.png" 
+           alt="" 
+           class="w-full h-full object-cover opacity-30">
+    </div>
+    <div class="relative z-10 w-full max-w-6xl px-6 flex flex-col md:flex-row items-center justify-center">
+      <div class="flex-1">
+        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          Shop Ethically, Effortlessly.<br>
+          <span class="text-green-600">AI-Powered Guidance</span> for a Better World.
+        </h1>
+        <p class="text-lg text-gray-700 mb-8 max-w-lg">
+          Swai is your Chrome companion for conscious shopping on Amazon. We harness AI to reveal ethical scores, spotlight responsible brands, and make sustainable choices easy—one click at a time.
+        </p>
+        <a href="#waitlist" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-md shadow-md transition">
+          Join the Waitlist
+        </a>
+      </div>
+      <div class="flex-1 mt-12 md:mt-0 flex justify-center">
+        <div class="relative w-80 h-80 group">
+          <!-- Gradient Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-green-600/20 via-blue-500/10 to-transparent rounded-xl z-10 mix-blend-multiply"></div>
+          <!-- Image Container with layered shadows -->
+          <div class="absolute inset-0 rounded-xl overflow-hidden [filter:drop-shadow(0_10px_8px_rgba(0,0,0,0.04))_drop-shadow(0_4px_3px_rgba(0,0,0,0.1))_drop-shadow(0_20px_13px_rgba(0,0,0,0.03))]">
+            <div class="absolute inset-0 rounded-xl overflow-hidden">
+              <img src="assets/ChatGPT Image Jun 6, 2025, 03_57_45 PM.png" 
+                   alt="Eco shopping" 
+                   class="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700 ease-out">
+            </div>
+          </div>
+          <!-- Decorative border with gradient and shadow -->
+          <div class="absolute inset-0 rounded-xl border-4 border-transparent bg-gradient-to-br from-green-400/30 to-blue-400/30 -z-10 blur-sm"></div>
+          <!-- Subtle shadow behind the main container -->
+          <div class="absolute -inset-4 -z-20 bg-gradient-to-br from-green-100/80 to-blue-100/80 rounded-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section - Enhanced Card Layout -->
+  <section class="relative py-24 bg-gradient-to-tr from-green-50 via-blue-50 to-white">
+    <div class="absolute inset-x-0 -top-28 flex justify-center pointer-events-none z-0">
+      <div class="w-4/5 h-32 bg-gradient-to-r from-green-200/40 via-blue-200/30 to-green-200/30 blur-2xl rounded-3xl"></div>
+    </div>
+    <div class="relative max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 text-center mb-14 tracking-tight">
+        Why Choose Swai?
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- Card 1 -->
+        <div class="feature-card blur-in transition duration-700 ease-out bg-white/70 backdrop-blur-md border border-green-200/60 shadow-xl rounded-2xl p-6 relative overflow-hidden group hover:scale-105 hover:shadow-2xl cursor-pointer"
+             style="animation-delay: 0.1s">
+          <div class="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-green-200/40 to-green-400/20 rounded-full blur-2xl z-0"></div>
+          <div class="relative z-10 flex flex-col items-center">
+            <div class="bg-green-600/20 p-3 rounded-xl mb-4 border-2 border-green-300/20 shadow-inner">
+              <svg class="w-9 h-9 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
+            </div>
+            <h3 class="font-semibold text-xl text-green-800 mb-2 drop-shadow-md">Real-Time Ethical Scores</h3>
+            <p class="text-gray-700/90">Instantly see the ethical and environmental impact of products as you browse.</p>
+            <div class="mt-4 w-full">
+              <div class="bg-green-100/60 rounded-lg p-2 px-3 text-xs text-green-900 text-center font-mono tracking-wide shadow-inner">Transparency Matters</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="feature-card blur-in transition duration-700 ease-out bg-gradient-to-br from-blue-100/80 via-white/60 to-green-100/80 backdrop-blur-md border border-blue-200/60 shadow-xl rounded-2xl p-6 relative overflow-hidden group hover:scale-105 hover:shadow-2xl cursor-pointer"
+             style="animation-delay: 0.3s">
+          <div class="absolute -bottom-10 -left-10 w-28 h-28 bg-blue-300/30 rounded-full blur-2xl"></div>
+          <div class="relative z-10 flex flex-col items-center">
+            <div class="bg-blue-600/20 p-3 rounded-xl mb-4 border-2 border-blue-300/20 shadow-inner">
+              <svg class="w-9 h-9 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17v-2a4 4 0 018 0v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <h3 class="font-semibold text-xl text-blue-800 mb-2 drop-shadow-md">AI-Driven Recommendations</h3>
+            <p class="text-gray-700/90">Our AI suggests more ethical alternatives without compromising on quality or price.</p>
+            <div class="mt-4 w-full">
+              <div class="bg-blue-100/60 rounded-lg p-2 px-3 text-xs text-blue-900 text-center font-mono tracking-wide shadow-inner">Smart + Fair</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="feature-card blur-in transition duration-700 ease-out bg-white/60 backdrop-blur-lg border border-gray-200/60 shadow-xl rounded-2xl p-6 relative overflow-hidden group hover:scale-105 hover:shadow-2xl cursor-pointer"
+             style="animation-delay: 0.5s">
+          <div class="absolute -top-8 -left-8 w-24 h-24 bg-gray-400/10 rounded-full blur-2xl"></div>
+          <div class="relative z-10 flex flex-col items-center">
+            <div class="bg-gray-700/20 p-3 rounded-xl mb-4 border-2 border-gray-300/20 shadow-inner">
+              <svg class="w-9 h-9 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="18" height="14" x="3" y="5" rx="2"></rect><path d="M8 21h8"></path></svg>
+            </div>
+            <h3 class="font-semibold text-xl text-gray-800 mb-2 drop-shadow-md">Seamless Chrome Integration</h3>
+            <p class="text-gray-700/90">Enjoy a user-friendly extension that fits right into your Amazon shopping experience.</p>
+            <div class="mt-4 w-full">
+              <div class="bg-gray-200/60 rounded-lg p-2 px-3 text-xs text-gray-800 text-center font-mono tracking-wide shadow-inner">Just Click & Shop</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="feature-card blur-in transition duration-700 ease-out bg-gradient-to-br from-green-100/80 via-white/60 to-blue-100/80 backdrop-blur-md border border-green-200/60 shadow-xl rounded-2xl p-6 relative overflow-hidden group hover:scale-105 hover:shadow-2xl cursor-pointer"
+             style="animation-delay: 0.7s">
+          <div class="absolute -bottom-10 -right-10 w-28 h-28 bg-green-300/40 rounded-full blur-2xl"></div>
+          <div class="relative z-10 flex flex-col items-center">
+            <div class="bg-green-700/20 p-3 rounded-xl mb-4 border-2 border-green-300/20 shadow-inner">
+              <svg class="w-9 h-9 text-green-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="font-semibold text-xl text-green-900 mb-2 drop-shadow-md">Empower Your Impact</h3>
+            <p class="text-gray-700/90">Make informed choices that align with your values and contribute to a sustainable future.</p>
+            <div class="mt-4 w-full">
+              <div class="bg-green-200/60 rounded-lg p-2 px-3 text-xs text-green-900 text-center font-mono tracking-wide shadow-inner">You Drive Change</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Remaining Sections Unchanged -->
+  <section class="py-16 bg-gradient-to-br from-blue-50 via-green-50 to-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-center text-gray-900 mb-8">
+        Loved by Early Adopters & Ethical Shopping Experts
+      </h2>
+      <div class="space-y-8 md:space-y-0 md:grid md:grid-cols-2 md:gap-10">
+        <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+          <p class="italic text-gray-700 mb-2">“Swai makes it so easy to shop with my values. The ethical scores are a game-changer!”</p>
+          <span class="text-sm font-semibold text-green-700">— Jamie L., Sustainable Living Blogger</span>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+          <p class="italic text-gray-700 mb-2">“Finally, a tool that bridges AI with conscious consumerism. Highly recommended!”</p>
+          <span class="text-sm font-semibold text-blue-700">— Dr. Priya R., Ethics Researcher</span>
+        </div>
+      </div>
+      <div class="mt-10 flex flex-wrap justify-center items-center gap-8 opacity-70">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/TechCrunch_Disrupt_Logo.png" alt="TechCrunch" class="h-8">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Forbes_logo.svg" alt="Forbes" class="h-7">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Fast_Company_logo.svg" alt="FastCompany" class="h-8">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Wired_logo.svg" alt="Wired" class="h-7">
+      </div>
+    </div>
+  </section>
+
+  <section id="waitlist" class="py-16 bg-white">
+    <div class="max-w-xl mx-auto px-6 bg-green-50 rounded-2xl shadow-lg py-10">
+      <h2 class="text-2xl font-bold text-center text-gray-900 mb-6">
+        Be First in Line for Swai
+      </h2>
+      <form class="space-y-6">
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="name">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" required placeholder="Your Name"
+            class="w-full px-4 py-2 rounded border border-gray-300 focus:ring-2 focus:ring-green-400 focus:outline-none transition">
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@email.com"
+            class="w-full px-4 py-2 rounded border border-gray-300 focus:ring-2 focus:ring-green-400 focus:outline-none transition">
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="preference">Shopping Interest (optional)</label>
+          <select id="preference" name="preference"
+            class="w-full px-4 py-2 rounded border border-gray-300 focus:ring-2 focus:ring-green-400 focus:outline-none transition">
+            <option value="">Select an option</option>
+            <option>Eco-Friendly Products</option>
+            <option>Vegan & Cruelty-Free</option>
+            <option>Fair Trade</option>
+            <option>Zero Waste</option>
+            <option>General Ethical Shopping</option>
+          </select>
+        </div>
+        <button type="submit"
+          class="w-full mt-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-md transition">
+          Join the Waitlist
+        </button>
+      </form>
+      <p class="text-xs text-center text-gray-500 mt-4">
+        We respect your privacy. No spam, ever.
+      </p>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-gray-100 py-8 mt-auto">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center md:justify-between space-y-4 md:space-y-0">
+      <div class="flex items-center space-x-2">
+        <img src="https://img.icons8.com/ios-filled/50/4ade80/leaf.png" alt="Swai Logo" class="h-7 w-7">
+        <span class="font-bold text-lg tracking-tight">Swai</span>
+      </div>
+      <div class="flex space-x-6">
+        <a href="mailto:hello@swai.app" class="hover:text-green-400 transition">Contact</a>
+        <a href="#" class="hover:text-green-400 transition">Privacy Policy</a>
+        <a href="#" class="hover:text-green-400 transition">Terms</a>
+      </div>
+      <div class="flex space-x-4">
+        <a href="https://twitter.com/" target="_blank" aria-label="Twitter" class="hover:text-green-400 transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0022.43.36a9.12 9.12 0 01-2.88 1.1A4.52 4.52 0 0016.11 0c-2.52 0-4.56 2.03-4.56 4.54 0 .36.04.72.12 1.06A12.91 12.91 0 013 1.13a4.52 4.52 0 001.4 6.06 4.48 4.48 0 01-2.06-.57v.06c0 2.23 1.59 4.07 3.72 4.5a4.57 4.57 0 01-2.04.08 4.54 4.54 0 004.24 3.13A9.05 9.05 0 012 19.54 12.82 12.82 0 008.29 21c7.55 0 11.68-6.18 11.68-11.56 0-.18-.01-.36-.02-.54A8.18 8.18 0 0023 3z"></path></svg>
+        </a>
+        <a href="https://instagram.com/" target="_blank" aria-label="Instagram" class="hover:text-green-400 transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 1.5h8.5A4.25 4.25 0 0120.5 7.75v8.5a4.25 4.25 0 01-4.25 4.25h-8.5A4.25 4.25 0 013.5 16.25v-8.5A4.25 4.25 0 017.75 3.5zm4.25 2a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zm0 1.5a3.75 3.75 0 110 7.5 3.75 3.75 0 010-7.5zm6.25 1.25a1 1 0 110 2 1 1 0 010-2z"></path></svg>
+        </a>
+        <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn" class="hover:text-green-400 transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C3.32 3.5 2 4.82 2 6.48c0 1.66 1.32 2.98 2.98 2.98h.02c1.66 0 2.98-1.32 2.98-2.98C7.98 4.82 6.66 3.5 4.98 3.5zM2.4 21.5h5.16v-10.5H2.4v10.5zM9.84 11h4.92v1.41h.07c.68-1.15 2.34-2.36 4.83-2.36 5.17 0 6.13 3.4 6.13 7.83v9.12h-5.16V18.1c0-2.02-.04-4.63-2.82-4.63-2.82 0-3.25 2.21-3.25 4.5v6.53H9.84V11z"></path></svg>
+        </a>
+      </div>
+    </div>
+    <div class="text-center text-xs text-gray-400 mt-4">
+      &copy; 2024 Swai. All Rights Reserved.
+    </div>
+  </footer>
+</body>
+</html>
